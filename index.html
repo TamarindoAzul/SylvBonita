@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('https://source.unsplash.com/1600x900/?love,romantic') no-repeat center center/cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container {
+            position: relative;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+        #yes {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+        }
+        #yes:hover {
+            background-color: #218838;
+        }
+        #no {
+            background-color: #dc3545;
+            color: white;
+            position: absolute;
+            font-weight: bold;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #no:hover {
+            background-color: #c82333;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .popup img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¿Quieres ser mi San Valentín? ❤️</h1>
+        <button id="yes" onclick="showPopup()">Sí</button>
+        <button id="no" onmouseover="moveButton()">No</button>
+    </div>
+
+    <div class="popup" id="popup">
+        <h2>¡Sabía que dirías que sí! ❤️🥰</h2>
+        <p>Eres la mejor persona del mundo, te quiero muchísimo 😍</p>
+        <img src="https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif" alt="Te amo">
+        <br><br>
+        <button onclick="closePopup()">Cerrar</button>
+    </div>
+
+    <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/4384"></audio>
+    <audio id="cuteMusic" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+
+    <script>
+        function showPopup() {
+            document.getElementById("popup").style.display = "block";
+            document.getElementById("cuteMusic").play();
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function moveButton() {
+            let button = document.getElementById("no");
+            let container = document.querySelector(".container");
+
+            let containerRect = container.getBoundingClientRect();
+            let buttonRect = button.getBoundingClientRect();
+
+            let maxX = containerRect.width - buttonRect.width - 10; // Límite horizontal
+            let maxY = containerRect.height - buttonRect.height - 10; // Límite vertical
+
+            let newX = Math.random() * maxX;
+            let newY = Math.random() * maxY;
+
+            button.style.left = `${newX}px`;
+            button.style.top = `${newY}px`;
+            
+        }
+    </script>
+
+</body>
+</html>
