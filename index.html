@@ -24,6 +24,7 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+            max-width: 90%;
         }
         h1 {
             font-size: 2rem;
@@ -69,6 +70,7 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
             text-align: center;
+            max-width: 80%;
         }
         .popup img {
             width: 100px;
@@ -81,7 +83,7 @@
     <div class="container">
         <h1>¿Quieres ser mi San Valentín? ❤️</h1>
         <button id="yes" onclick="showPopup()">Sí</button>
-        <button id="no" onmouseover="moveButton()">No</button>
+        <button id="no">No</button>
     </div>
 
     <div class="popup" id="popup">
@@ -120,8 +122,12 @@
 
             button.style.left = `${newX}px`;
             button.style.top = `${newY}px`;
-            
+            document.getElementById("clickSound").play();
         }
+
+        // Para PC (hover) y Celulares (touch)
+        document.getElementById("no").addEventListener("mouseover", moveButton);
+        document.getElementById("no").addEventListener("touchstart", moveButton);
     </script>
 
 </body>
