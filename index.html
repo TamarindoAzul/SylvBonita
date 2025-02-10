@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Quieres ser mi San Valentín?</title>
+    <title>¿Quieres ser mi San Valentín? ❤️</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -116,12 +116,16 @@
 
             let containerRect = container.getBoundingClientRect();
             let buttonRect = noButton.getBoundingClientRect();
+            let yesRect = yesButton.getBoundingClientRect();
 
             let maxX = containerRect.width - buttonRect.width - 10;
             let maxY = containerRect.height - buttonRect.height - 10;
 
-            let newX = Math.random() * maxX;
-            let newY = Math.random() * maxY;
+            let newX, newY;
+            do {
+                newX = Math.random() * maxX;
+                newY = Math.random() * maxY;
+            } while (newY < yesRect.bottom - containerRect.top); // Evita que el "No" se ponga encima del "Sí"
 
             noButton.style.position = "absolute";
             noButton.style.left = `${newX}px`;
