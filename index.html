@@ -50,8 +50,8 @@
         #no {
             background-color: #dc3545;
             color: white;
-            position: absolute;
             font-weight: bold;
+            position: absolute;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -83,7 +83,7 @@
     <div class="container">
         <h1>¿Quieres ser mi San Valentín? ❤️</h1>
         <button id="yes" onclick="showPopup()">Sí</button>
-        <button id="no">No</button>
+        <button id="no" onclick="moveButton()">No</button>
     </div>
 
     <div class="popup" id="popup">
@@ -98,6 +98,10 @@
     <audio id="cuteMusic" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
 
     <script>
+        let yesButton = document.getElementById("yes");
+        let noButton = document.getElementById("no");
+        let clickCount = 0; 
+
         function showPopup() {
             document.getElementById("popup").style.display = "block";
             document.getElementById("cuteMusic").play();
@@ -108,26 +112,29 @@
         }
 
         function moveButton() {
-            let button = document.getElementById("no");
             let container = document.querySelector(".container");
 
             let containerRect = container.getBoundingClientRect();
-            let buttonRect = button.getBoundingClientRect();
+            let buttonRect = noButton.getBoundingClientRect();
 
-            let maxX = containerRect.width - buttonRect.width - 10; // Límite horizontal
-            let maxY = containerRect.height - buttonRect.height - 10; // Límite vertical
+            let maxX = containerRect.width - buttonRect.width - 10;
+            let maxY = containerRect.height - buttonRect.height - 10;
 
             let newX = Math.random() * maxX;
             let newY = Math.random() * maxY;
 
-            button.style.left = `${newX}px`;
-            button.style.top = `${newY}px`;
+            noButton.style.position = "absolute";
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
+
+            // Hacer más grande el botón "Sí"
+            clickCount++;
+            let newSize = 18 + clickCount * 5; // Aumenta 5px en cada click
+            yesButton.style.fontSize = `${newSize}px`;
+            yesButton.style.padding = `${newSize / 2}px ${newSize}px`;
+
             document.getElementById("clickSound").play();
         }
-
-        // Para PC (hover) y Celulares (touch)
-        document.getElementById("no").addEventListener("mouseover", moveButton);
-        document.getElementById("no").addEventListener("touchstart", moveButton);
     </script>
 
 </body>
