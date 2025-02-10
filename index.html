@@ -95,7 +95,7 @@
     </div>
 
     <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/4384"></audio>
-    
+    <audio id="cuteMusic" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
 
     <script>
         let yesButton = document.getElementById("yes");
@@ -136,6 +136,8 @@
             let newSize = 18 + clickCount * 5; // Aumenta 5px en cada click
             yesButton.style.fontSize = `${newSize}px`;
             yesButton.style.padding = `${newSize / 2}px ${newSize}px`;
+
+            document.getElementById("clickSound").play();
         }
     </script>
 
